@@ -1,17 +1,17 @@
 variable "linux_virtual_machine" {
   type        = any
   default     = {}
-  description = "resource definition, default settings are defined within locals and merged with var settings"
+  description = "Resource definition, default settings are defined within locals and merged with var settings. For more information look at [Outputs](#Outputs)."
 }
 variable "managed_disk" {
   type        = any
   default     = {}
-  description = "resource definition, default settings are defined within locals and merged with var settings"
+  description = "Resource definition, default settings are defined within locals and merged with var settings. For more information look at [Outputs](#Outputs)."
 }
 variable "virtual_machine_data_disk_attachment" {
   type        = any
   default     = {}
-  description = "resource definition, default settings are defined within locals and merged with var settings"
+  description = "Resource definition, default settings are defined within locals and merged with var settings. For more information look at [Outputs](#Outputs)."
 }
 
 locals {
@@ -22,50 +22,50 @@ locals {
       computer_name                   = ""
       admin_password                  = null
       license_type                    = null
-      allow_extension_operations      = false
+      allow_extension_operations      = false // defined default
       availability_set_id             = null
       custom_data                     = null
       dedicated_host_id               = null
-      disable_password_authentication = true
-      encryption_at_host_enabled      = false
+      disable_password_authentication = true // defined default
+      encryption_at_host_enabled      = null
       eviction_policy                 = null
-      extensions_time_budget          = "PT1H30M"
-      patch_mode                      = null
-      max_bid_price                   = "-1"
+      extensions_time_budget          = "PT1H30M"      // defined default
+      patch_mode                      = "ImageDefault" // defined default
+      max_bid_price                   = "-1"           // defined default
       platform_fault_domain           = null
-      priority                        = "Regular"
-      provision_vm_agent              = "true"
+      priority                        = "Regular" // defined default
+      provision_vm_agent              = true      // defined default
       proximity_placement_group_id    = null
       secure_boot_enabled             = null
       source_image_id                 = null
       user_data                       = null
       vtpm_enabled                    = null
       virtual_machine_scale_set_id    = null
-      zone                            = 1
+      zone                            = null
       admin_ssh_key                   = {}
       os_disk = {
         name                      = ""
-        caching                   = "None"
+        caching                   = "ReadWrite" // defined default
+        storage_account_type      = "Standard_LRS"
         disk_encryption_set_id    = null
         disk_size_gb              = null
-        write_accelerator_enabled = false
-        disk_encryption_set_id    = null
+        write_accelerator_enabled = null
         diff_disk_settings        = {}
       }
       additional_capabilities = {
-        ultra_ssd_enabled = false
+        ultra_ssd_enabled = false // defined default
       }
       boot_diagnostics = {
-        storage_account_uri = ""
+        storage_account_uri = null
       }
       identity = {
-        type         = ""
+        type         = null
         identity_ids = null
       }
       plan   = {}
       secret = {}
       source_image_reference = {
-        publisher = ""
+        publisher = null
         offer     = null
         sku       = null
         version   = null
@@ -85,10 +85,10 @@ locals {
       storage_account_id            = null
       tier                          = null
       max_shares                    = null
-      trusted_launch_enabled        = false
-      on_demand_bursting_enabled    = false
+      trusted_launch_enabled        = null
+      on_demand_bursting_enabled    = null
       network_access_policy         = null
-      public_network_access_enabled = false
+      public_network_access_enabled = true // defined default
       encryption_settings = {
         enabled             = false
         disk_encryption_key = {}
@@ -96,12 +96,14 @@ locals {
       }
     }
     virtual_machine_data_disk_attachment = {
-      create_option             = null
+      create_option             = "Attach" // defined default
       write_accelerator_enabled = null
+      caching                   = "ReadWrite" // defined default
+      lun                       = null
     }
   }
 
-  # compare and merge custom and default values
+  // compare and merge custom and default values
   linux_virtual_machine_values = {
     for linux_virtual_machine in keys(var.linux_virtual_machine) :
     linux_virtual_machine => merge(local.default.linux_virtual_machine, var.linux_virtual_machine[linux_virtual_machine])
@@ -110,7 +112,8 @@ locals {
     for managed_disk in keys(var.managed_disk) :
     managed_disk => merge(local.default.managed_disk, var.managed_disk[managed_disk])
   }
-  # merge all custom and default values
+
+  // merge all custom and default values
   linux_virtual_machine = {
     for linux_virtual_machine in keys(var.linux_virtual_machine) :
     linux_virtual_machine => merge(

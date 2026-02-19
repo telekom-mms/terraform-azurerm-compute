@@ -45,52 +45,29 @@ This module manages Azure Compute Resources.
 
 ```hcl
 module "compute" {
-  source = "registry.terraform.io/T-Systems-MMS/compute/azurerm"
+  source = "registry.terraform.io/telekom-mms/compute/azurerm"
   linux_virtual_machine = {
-    service-env-vm = {
-      computer_name         = "service-env-vm"
-      location              = "westeurope"
-      resource_group_name   = "service-env-rg"
-      admin_username        = "linux_root"
-      size                  = "Standard_E4as_v4"
-      network_interface_ids = [module.network.network_interface[service-env-vm].id]
-      zone                  = 1
-      source_image_reference = {
-        publisher = "OpenLogic"
-        offer     = "CentOS"
-        sku       = "7.6"
-        version   = "latest"
-      }
+    example = {
+      computer_name         = "example-vm"
+      admin_username        = "azureuser"
+      size                  = "Standard_DS1_v2"
+      network_interface_ids = ["/subscriptions/.../networkInterfaces/example-nic"]
       admin_ssh_key = {
-        mgmt-vm = {
-          public_key = "ssh-rsa SSH-KEY"
-          username   = "linux_root"
+        example = {
+          public_key = "ssh-rsa ..."
+          username   = "azureuser"
         }
       }
-      tags = {
-        service = "service_name"
+      os_disk = {
+        caching              = "ReadWrite"
+        storage_account_type = "Standard_LRS"
       }
-    }
-  }
-  managed_disk = {
-    disk0 = {
-      location             = "westeurope"
-      resource_group_name  = "service-env-rg"
-      storage_account_type = "Premium_LRS"
-      create_option        = "Empty"
-      disk_size_gb         = 50
-      zone                 = 1
-      tags = {
-        service = "service_name"
+      source_image_reference = {
+        publisher = "Canonical"
+        offer     = "0001-com-ubuntu-server-jammy"
+        sku       = "22_04-lts"
+        version   = "latest"
       }
-    }
-  }
-  virtual_machine_data_disk_attachment = {
-    service-env-vm = {
-      managed_disk_id    = module.compute.managed_disk[disk0].id
-      virtual_machine_id = module.compute.linux_virtual_machine[service-env-vm].id
-      lun                = 0
-      caching            = "None"
     }
   }
 }

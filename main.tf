@@ -1,8 +1,10 @@
 /**
- * # compute
- *
- * This module manages Azure Compute Resources.
- *
+* # compute
+*
+* This module manages the azurerm compute resources, see https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs.
+*
+* For more information about the module structure see https://telekom-mms.github.io/terraform-template.
+*
 */
 
 /* Linux Virtual Machine */
