@@ -90,7 +90,6 @@ locals {
       network_access_policy         = null
       public_network_access_enabled = true // defined default
       encryption_settings = {
-        enabled             = false
         disk_encryption_key = {}
         key_encryption_key  = {}
       }
