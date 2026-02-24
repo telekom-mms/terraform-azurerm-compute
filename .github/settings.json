@@ -5,8 +5,11 @@
     "default_branch": "main",
     "homepage": "https://telekom-mms.github.io/terraform-azurerm-compute",
     "topics": [
+      "azure",
+      "linux-virtual-machine",
+      "managed-disk",
       "terraform",
-      "azure"
+      "virtual-machine-data-disk-attachment"
     ]
   }
 }
