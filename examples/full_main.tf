@@ -1,5 +1,3 @@
-data "azurerm_subscription" "current" {}
-
 module "resource_group" {
   source = "registry.terraform.io/telekom-mms/resourcegroup/azurerm"
   resource_group = {
