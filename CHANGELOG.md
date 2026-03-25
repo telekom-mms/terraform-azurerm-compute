@@ -1,20 +1,52 @@
 # Changelog
 
-## [1.0.2](https://github.com/T-Systems-MMS/terraform-azurerm-compute/tree/1.0.2) (2022-05-10)
+## [2.0.0](https://github.com/telekom-mms/terraform-azurerm-compute/tree/2.0.0) (2026-03-25)
 
-[Full Changelog](https://github.com/T-Systems-MMS/terraform-azurerm-compute/compare/1.0.1...1.0.2)
-
-## [1.0.1](https://github.com/T-Systems-MMS/terraform-azurerm-compute/tree/1.0.1) (2022-05-10)
-
-[Full Changelog](https://github.com/T-Systems-MMS/terraform-azurerm-compute/compare/1.0.0...1.0.1)
-
-## [1.0.0](https://github.com/T-Systems-MMS/terraform-azurerm-compute/tree/1.0.0) (2022-05-10)
-
-[Full Changelog](https://github.com/T-Systems-MMS/terraform-azurerm-compute/compare/b5b5566511fd11fe5d292cde3ffa0f537ffe48cd...1.0.0)
+[Full Changelog](https://github.com/telekom-mms/terraform-azurerm-compute/compare/1.0.4...2.0.0)
 
 **Merged pull requests:**
 
-- add renovate config [\#1](https://github.com/T-Systems-MMS/terraform-azurerm-compute/pull/1) ([michaelamattes](https://github.com/michaelamattes))
+- add linting settings [\#13](https://github.com/telekom-mms/terraform-azurerm-compute/pull/13) ([mikaEz](https://github.com/mikaEz))
+- chore\(config\): standardize renovate.json and update repository topics [\#12](https://github.com/telekom-mms/terraform-azurerm-compute/pull/12) ([mikaEz](https://github.com/mikaEz))
+- refactor and upgrade module [\#11](https://github.com/telekom-mms/terraform-azurerm-compute/pull/11) ([mikaEz](https://github.com/mikaEz))
+
+## [1.0.4](https://github.com/telekom-mms/terraform-azurerm-compute/tree/1.0.4) (2024-08-28)
+
+[Full Changelog](https://github.com/telekom-mms/terraform-azurerm-compute/compare/1.0.3...1.0.4)
+
+**Merged pull requests:**
+
+- Pin version of azurerm to compatible state [\#10](https://github.com/telekom-mms/terraform-azurerm-compute/pull/10) ([schurzi](https://github.com/schurzi))
+
+## [1.0.3](https://github.com/telekom-mms/terraform-azurerm-compute/tree/1.0.3) (2023-07-21)
+
+[Full Changelog](https://github.com/telekom-mms/terraform-azurerm-compute/compare/1.0.2...1.0.3)
+
+**Fixed bugs:**
+
+- Null values instead of empty strings for admin\_password [\#7](https://github.com/telekom-mms/terraform-azurerm-compute/pull/7) ([habr-mms](https://github.com/habr-mms))
+
+**Merged pull requests:**
+
+- add Renovate Dependency Dashboard and automatic merge on patch updates [\#6](https://github.com/telekom-mms/terraform-azurerm-compute/pull/6) ([mikaEz](https://github.com/mikaEz))
+- Update actions/checkout action to v3.2.0 [\#5](https://github.com/telekom-mms/terraform-azurerm-compute/pull/5) ([renovate[bot]](https://github.com/apps/renovate))
+- Update actions/checkout action to v3.1.0 [\#4](https://github.com/telekom-mms/terraform-azurerm-compute/pull/4) ([renovate[bot]](https://github.com/apps/renovate))
+
+## [1.0.2](https://github.com/telekom-mms/terraform-azurerm-compute/tree/1.0.2) (2022-05-10)
+
+[Full Changelog](https://github.com/telekom-mms/terraform-azurerm-compute/compare/1.0.1...1.0.2)
+
+## [1.0.1](https://github.com/telekom-mms/terraform-azurerm-compute/tree/1.0.1) (2022-05-10)
+
+[Full Changelog](https://github.com/telekom-mms/terraform-azurerm-compute/compare/1.0.0...1.0.1)
+
+## [1.0.0](https://github.com/telekom-mms/terraform-azurerm-compute/tree/1.0.0) (2022-05-10)
+
+[Full Changelog](https://github.com/telekom-mms/terraform-azurerm-compute/compare/b5b5566511fd11fe5d292cde3ffa0f537ffe48cd...1.0.0)
+
+**Merged pull requests:**
+
+- add renovate config [\#1](https://github.com/telekom-mms/terraform-azurerm-compute/pull/1) ([mikaEz](https://github.com/mikaEz))
 
 
 
