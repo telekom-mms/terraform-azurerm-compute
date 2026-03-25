@@ -1,8 +1,10 @@
 /**
- * # compute
- *
- * This module manages Azure Compute Resources.
- *
+* # compute
+*
+* This module manages the azurerm compute resources, see https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs.
+*
+* For more information about the module structure see https://telekom-mms.github.io/terraform-template.
+*
 */
 
 /* Linux Virtual Machine */
@@ -152,11 +154,9 @@ resource "azurerm_managed_disk" "managed_disk" {
   public_network_access_enabled = local.managed_disk[each.key].public_network_access_enabled
 
   dynamic "encryption_settings" {
-    for_each = local.managed_disk[each.key].encryption_settings.enabled != false ? [1] : []
+    for_each = length(compact(values(local.managed_disk[each.key].encryption_settings))) > 0 ? [0] : []
 
     content {
-      enabled = local.managed_disk[each.key].encryption_settings.enabled
-
       dynamic "disk_encryption_key" {
         for_each = local.managed_disk[each.key].encryption_settings.disk_encryption_key
         content {

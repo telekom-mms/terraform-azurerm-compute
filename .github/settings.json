@@ -1,0 +1,15 @@
+{
+  "repos": {
+    "description": "A Terraform module that manages the azurerm compute resources from the azurerm provider.",
+    "visibility": "public",
+    "default_branch": "main",
+    "homepage": "https://telekom-mms.github.io/terraform-azurerm-compute",
+    "topics": [
+      "azure",
+      "linux-virtual-machine",
+      "managed-disk",
+      "terraform",
+      "virtual-machine-data-disk-attachment"
+    ]
+  }
+}
