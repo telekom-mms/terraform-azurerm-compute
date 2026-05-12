@@ -60,7 +60,7 @@ resource "azurerm_linux_virtual_machine" "linux_virtual_machine" {
     write_accelerator_enabled = local.linux_virtual_machine[each.key].os_disk.write_accelerator_enabled
 
     dynamic "diff_disk_settings" {
-      for_each = local.linux_virtual_machine[each.key].os_disk.diff_disk_settings != {} ? [1] : []
+      for_each = length(keys(local.linux_virtual_machine[each.key].os_disk.diff_disk_settings)) > 0 ? [1] : []
 
       content {
         option = local.linux_virtual_machine[each.key].os_disk.diff_disk_settings.option
@@ -77,7 +77,7 @@ resource "azurerm_linux_virtual_machine" "linux_virtual_machine" {
   }
 
   dynamic "boot_diagnostics" {
-    for_each = local.linux_virtual_machine[each.key].boot_diagnostics.storage_account_uri != "" ? [1] : []
+    for_each = local.linux_virtual_machine[each.key].boot_diagnostics.storage_account_uri != null ? [1] : []
 
     content {
       storage_account_uri = local.linux_virtual_machine[each.key].boot_diagnostics.storage_account_uri
@@ -85,7 +85,7 @@ resource "azurerm_linux_virtual_machine" "linux_virtual_machine" {
   }
 
   dynamic "identity" {
-    for_each = local.linux_virtual_machine[each.key].identity.type != "" ? [1] : []
+    for_each = local.linux_virtual_machine[each.key].identity.type != null ? [1] : []
 
     content {
       type         = local.linux_virtual_machine[each.key].identity.type
@@ -94,7 +94,7 @@ resource "azurerm_linux_virtual_machine" "linux_virtual_machine" {
   }
 
   dynamic "plan" {
-    for_each = local.linux_virtual_machine[each.key].plan != {} ? [1] : []
+    for_each = length(keys(local.linux_virtual_machine[each.key].plan)) > 0 ? [1] : []
 
     content {
       name      = local.linux_virtual_machine[each.key].plan.name
@@ -104,7 +104,7 @@ resource "azurerm_linux_virtual_machine" "linux_virtual_machine" {
   }
 
   dynamic "secret" {
-    for_each = local.linux_virtual_machine[each.key].secret != {} ? [1] : []
+    for_each = length(keys(local.linux_virtual_machine[each.key].secret)) > 0 ? [1] : []
 
     content {
       key_vault_id = local.linux_virtual_machine[each.key].secret.key_vault_id
@@ -115,7 +115,7 @@ resource "azurerm_linux_virtual_machine" "linux_virtual_machine" {
   }
 
   dynamic "source_image_reference" {
-    for_each = local.linux_virtual_machine[each.key].source_image_reference.publisher != "" ? [1] : []
+    for_each = local.linux_virtual_machine[each.key].source_image_reference.publisher != null ? [1] : []
 
     content {
       publisher = local.linux_virtual_machine[each.key].source_image_reference.publisher
@@ -154,7 +154,7 @@ resource "azurerm_managed_disk" "managed_disk" {
   public_network_access_enabled = local.managed_disk[each.key].public_network_access_enabled
 
   dynamic "encryption_settings" {
-    for_each = length(compact(values(local.managed_disk[each.key].encryption_settings))) > 0 ? [0] : []
+    for_each = length(compact(concat(values(local.managed_disk[each.key].encryption_settings.disk_encryption_key), values(local.managed_disk[each.key].encryption_settings.key_encryption_key)))) > 0 ? [0] : []
 
     content {
       dynamic "disk_encryption_key" {
